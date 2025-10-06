@@ -72,25 +72,6 @@ export default function GamePage() {
       }
     }
 
-    const handleGameUpdate = (payload: { new?: Game }) => {
-      if (payload.new) {
-        setGame(payload.new)
-      }
-    }
-
-    const handlePlayersUpdate = () => {
-      loadGameData() // Reload all data to ensure consistency
-    }
-
-    const handleMovesUpdate = (payload: { new?: Move }) => {
-      if (payload.new) {
-        setMoves(prev => [...prev, payload.new!])
-      }
-    }
-
-    // Load initial game data
-    loadGameData()
-
     // Load initial game data
     loadGameData()
 

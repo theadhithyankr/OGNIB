@@ -19,7 +19,7 @@ export function GameResults({ game, players, currentUser }: GameResultsProps) {
   const router = useRouter()
 
   const winner = players.find(p => p.has_won)
-  const isHost = game.host_id === currentUser.id
+  const isHost = players.find(p => p.id === currentUser.id)?.is_host || false
   const isWinner = winner?.id === currentUser.id
 
   const playAgain = async () => {

@@ -21,7 +21,7 @@ export function SupabaseConnectionTest() {
         }
 
         // Test basic connection
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('games')
           .select('count')
           .limit(1)
