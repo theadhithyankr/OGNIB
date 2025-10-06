@@ -8,7 +8,6 @@ import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import { generateRoomCode, generateBingoBoard } from '@/lib/bingo-utils'
 import { useRouter } from 'next/navigation'
-import { SupabaseConnectionTest } from '@/components/SupabaseConnectionTest'
 
 export function HomePage() {
   const [joinCode, setJoinCode] = useState('')
@@ -213,11 +212,6 @@ export function HomePage() {
             </div>
           </div>
         )}
-
-        {/* Supabase Connection Test */}
-        <div className="max-w-2xl mx-auto mt-8">
-          <SupabaseConnectionTest />
-        </div>
 
         {/* How to Play */}
         <div className="max-w-2xl mx-auto mt-12">

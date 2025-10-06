@@ -5,10 +5,11 @@ export const supabase = createClient()
 // Types for our database schema
 export interface Game {
   id: string
-  host_id: string
   code: string
   status: 'waiting' | 'started' | 'finished'
+  numbers_called: number[]
   current_number?: number
+  current_letter?: string
   created_at: string
   updated_at: string
 }

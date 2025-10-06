@@ -18,7 +18,8 @@ export function GameLobby({ game, players, currentUser }: GameLobbyProps) {
   const [copySuccess, setCopySuccess] = useState(false)
   const router = useRouter()
 
-  const isHost = game.host_id === currentUser.id
+  // Find if current user is host from players list
+  const isHost = players.find(p => p.id === currentUser.id)?.is_host || false
   const canStart = players.length >= 2 // Minimum 2 players to start
 
   const copyGameCode = async () => {
@@ -140,7 +141,7 @@ export function GameLobby({ game, players, currentUser }: GameLobbyProps) {
                 <Button
                   onClick={copyGameCode}
                   variant="outline"
-                  className="w-full"
+                  className="w-full bg-white hover:bg-indigo-50 border-indigo-300 text-indigo-600 hover:text-indigo-700"
                   disabled={copySuccess}
                 >
                   <Copy className="h-4 w-4 mr-2" />
@@ -176,7 +177,7 @@ export function GameLobby({ game, players, currentUser }: GameLobbyProps) {
           <Button
             onClick={leaveGame}
             variant="outline"
-            className="border-red-300 text-red-600 hover:bg-red-50"
+            className="border-red-300 text-red-600 hover:bg-red-50 hover:border-red-400 bg-white px-6 py-3"
           >
             {isHost ? 'Cancel Game' : 'Leave Game'}
           </Button>
