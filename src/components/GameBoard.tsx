@@ -112,10 +112,10 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
   if (!currentPlayer) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-pink-100">
-        <Card className="bg-white/90 backdrop-blur-sm shadow-xl">
+        <Card className="bg-white/95 backdrop-blur-sm shadow-xl">
           <CardContent className="text-center p-8">
             <h2 className="text-2xl font-bold text-red-600 mb-4">⚠️ Access Denied</h2>
-            <p className="text-gray-600 mb-6">You are not part of this game</p>
+            <p className="text-gray-700 mb-6">You are not part of this game</p>
             <Button onClick={leaveGame} className="bg-red-600 hover:bg-red-700 text-white">
               Go Home
             </Button>
@@ -129,17 +129,17 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100 p-2 sm:p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header - Responsive */}
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-lg">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-4 sm:mb-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-gray-200">
           <div className="text-center sm:text-left mb-4 sm:mb-0">
             <h1 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              � BINGO GAME
+              🎯 BINGO GAME
             </h1>
-            <p className="text-gray-600 font-medium">Game Code: <span className="font-bold text-indigo-600">{game.code}</span></p>
+            <p className="text-gray-700 font-medium">Game Code: <span className="font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">{game.code}</span></p>
           </div>
           <Button 
             variant="outline" 
             onClick={leaveGame}
-            className="bg-white/80 hover:bg-red-50 border-red-300 text-red-600"
+            className="bg-white hover:bg-red-50 border-red-300 text-red-600 hover:text-red-700 font-medium"
           >
             Leave Game
           </Button>
@@ -150,7 +150,7 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
           
           {/* Game Board - Takes full width on mobile, 3 columns on desktop */}
           <div className="xl:col-span-3 order-2 xl:order-1">
-            <Card className="bg-white/90 backdrop-blur-sm shadow-xl border-0">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-xl border-0">
               <CardHeader className="text-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-t-lg">
                 <CardTitle className="text-lg sm:text-xl flex items-center justify-center gap-2">
                   <Target className="h-6 w-6" />
@@ -192,7 +192,7 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
             {lastCalledNumber && (
               <Card className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white border-0 shadow-xl">
                 <CardHeader className="text-center pb-2">
-                  <CardTitle className="text-sm sm:text-base">Latest Called</CardTitle>
+                  <CardTitle className="text-sm sm:text-base text-white">Latest Called</CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
                   <div className="bg-white/20 backdrop-blur-sm text-3xl sm:text-4xl font-bold py-4 px-2 rounded-lg mb-3">
@@ -208,9 +208,9 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
 
             {/* Host Controls */}
             {isHost && (
-              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-lg">
+              <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-lg">
                 <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                  <CardTitle className="flex items-center gap-2 text-sm sm:text-base text-gray-800">
                     <Crown className="h-5 w-5 text-yellow-600" />
                     Host Controls
                   </CardTitle>
@@ -219,13 +219,13 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
                   <Button
                     onClick={drawNumber}
                     disabled={isDrawing || drawnNumbers.length >= 75}
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-2.5"
+                    className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-semibold py-3 shadow-lg"
                   >
                     <Dice6 className="h-4 w-4 mr-2" />
                     {isDrawing ? 'Drawing...' : 'Draw Next Number'}
                   </Button>
                   {drawnNumbers.length >= 75 && (
-                    <p className="text-sm text-gray-500 mt-2 text-center">
+                    <p className="text-sm text-gray-600 mt-2 text-center font-medium">
                       All numbers drawn!
                     </p>
                   )}
@@ -234,11 +234,11 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
             )}
 
             {!isHost && (
-              <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-lg">
-                <CardContent className="text-center py-4">
-                  <div className="flex items-center justify-center gap-2 text-gray-600">
-                    <Clock className="h-4 w-4" />
-                    <span className="text-sm">Waiting for {host?.name || 'host'} to call next number...</span>
+              <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-lg">
+                <CardContent className="text-center py-6">
+                  <div className="flex items-center justify-center gap-2 text-gray-700 mb-3">
+                    <Clock className="h-5 w-5 text-indigo-600" />
+                    <span className="text-sm font-medium">Waiting for <span className="font-bold text-indigo-600">{host?.name || 'host'}</span> to call next number...</span>
                   </div>
                   <div className="flex items-center justify-center gap-1 mt-2">
                     <div className="animate-bounce w-2 h-2 bg-indigo-600 rounded-full"></div>
@@ -250,10 +250,10 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
             )}
 
             {/* Players List */}
-            <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-lg">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-lg">
               <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
-                  <Users className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-sm sm:text-base text-gray-800">
+                  <Users className="h-5 w-5 text-indigo-600" />
                   Players ({players.length})
                 </CardTitle>
               </CardHeader>
@@ -262,27 +262,32 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
                   {players.map((player) => (
                     <div
                       key={player.id}
-                      className={`flex items-center justify-between p-2 rounded-lg transition-all ${
+                      className={`flex items-center justify-between p-3 rounded-lg transition-all border ${
                         player.id === currentUser.id 
-                          ? 'bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 shadow-sm' 
-                          : 'bg-gray-50 hover:bg-gray-100'
+                          ? 'bg-indigo-50 border-indigo-300 shadow-sm' 
+                          : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
                       }`}
                     >
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         <div className={`w-3 h-3 rounded-full ${
                           player.has_won ? 'bg-yellow-500 animate-pulse' : 'bg-green-500'
                         }`} />
-                        <span className="text-sm font-medium">
+                        <span className="text-sm font-semibold text-gray-800">
                           {player.name}
-                          {player.id === currentUser.id && ' (You)'}
+                          {player.id === currentUser.id && (
+                            <span className="text-indigo-600 font-bold"> (You)</span>
+                          )}
                         </span>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         {player.is_host && (
-                          <Crown className="h-4 w-4 text-yellow-600" />
+                          <div className="flex items-center gap-1 bg-yellow-100 px-2 py-1 rounded-full">
+                            <Crown className="h-4 w-4 text-yellow-600" />
+                            <span className="text-xs font-bold text-yellow-800">HOST</span>
+                          </div>
                         )}
                         {player.has_won && (
-                          <span className="text-xs bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-2 py-1 rounded-full font-bold">
+                          <span className="text-xs bg-gradient-to-r from-yellow-400 to-orange-400 text-white px-3 py-1 rounded-full font-bold shadow-sm">
                             WINNER!
                           </span>
                         )}
@@ -294,10 +299,10 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
             </Card>
 
             {/* Called Numbers - Compact on mobile */}
-            <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-lg">
+            <Card className="bg-white/95 backdrop-blur-sm border-0 shadow-lg">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm sm:text-base">Recent Numbers</CardTitle>
-                <CardDescription className="text-xs">
+                <CardTitle className="text-sm sm:text-base text-gray-800">Recent Numbers</CardTitle>
+                <CardDescription className="text-xs text-gray-600">
                   Last {Math.min(drawnNumbers.length, 10)} called
                 </CardDescription>
               </CardHeader>
@@ -306,10 +311,10 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
                   {drawnNumbers.slice(-10).reverse().map((number, index) => (
                     <div
                       key={number}
-                      className={`text-xs font-bold py-1.5 px-1 rounded text-center transition-all ${
+                      className={`text-xs font-bold py-2 px-1 rounded text-center transition-all ${
                         index === 0 
                           ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg scale-110' 
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                       }`}
                     >
                       {number}
@@ -317,7 +322,7 @@ export function GameBoard({ game, players, moves, currentUser }: GameBoardProps)
                   ))}
                 </div>
                 {drawnNumbers.length > 10 && (
-                  <p className="text-xs text-gray-500 mt-2 text-center">
+                  <p className="text-xs text-gray-600 mt-2 text-center font-medium">
                     +{drawnNumbers.length - 10} more numbers called
                   </p>
                 )}
